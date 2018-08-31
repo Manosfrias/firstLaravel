@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Profession;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\BD;
 
@@ -18,11 +20,10 @@ class UserSeeder extends Seeder
 
         // También podemos usar condicionales
         // El condicional lo podemos pasar así : ->where('name', 'Back-end developer') Pero, si usamos whereName(), laravel entiende que Name es la columna dónde queremos buscar
-        $professionId = DB::table('professions')
-                      ->whereName('Back-end developer')
-                      ->value('id');
 
-        DB::table('users')->insert([
+        $professionId = Profession::whereName('Back-end developer')->value('id');
+
+        User::create([
             'name' => 'Duilio Palacios',
             'email' => 'diulio@email.com',
             'password' => bcrypt('laravel'),
