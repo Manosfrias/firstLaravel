@@ -23,12 +23,20 @@ class UserSeeder extends Seeder
 
         $professionId = Profession::whereName('Back-end developer')->value('id');
 
-        User::create([
-            'name' => 'Duilio Palacios',
+        factory(User::class)->create([
+            'name' => 'Diulio Palacios',
             'email' => 'diulio@email.com',
             'password' => bcrypt('laravel'),
-            'profession_id' => $professionId
+            'profession_id' => $professionId,
+            'is_admin' => true,
 
-       ]);
+        ]);
+
+        factory(User::class)->create([
+            'profession_id' => $professionId,
+        ]);
+
+        factory(User::class, 48)->create();
+
     }
 }

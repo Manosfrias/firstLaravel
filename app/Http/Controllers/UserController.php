@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index(){
-        if( request()->has('empty') ) {
-            $users = [];
-        } else {
-            $users = ['Iñigo', 'Ekaitz', 'Itxasne', 'Ainara', 'Mikel', 'Iulene'];
-        }
-
+        $users = User::all();
         
         $title = 'Listado de usuarios';
         
@@ -37,10 +34,14 @@ class UserController extends Controller
         return view('users.create', compact('title'));
     }
 
-    public function show($id){
+    public function show(User $user){
         $title = 'Ver usuario';
+
+        // $user = User::find($id);
         
-        return view('users.show', compact('title', 'id'));
+        // if ($user == null) return response()->view('errors.404',['title' => 'Error 404'], 404);
+
+        return view('users.show', compact('title', 'user'));
     }
 
     public function edit($id){

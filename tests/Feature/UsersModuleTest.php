@@ -13,15 +13,20 @@ class UsersModuleTest extends TestCase
     function it_loads_the_user_list_page()
     {
         $this->get('/usuarios')
-            ->assertStatus(200)
-            ->assertSee('Itxasne');
+            ->assertStatus(200);
     }
 
     /** @test */
-
+    function it_displays_a_404_error_if_the_user_is_not_found()
+    {
+        $this->get('/usuarios/999')
+             ->assertStatus(404)
+             ->assertSee('Usuario no encontrado');
+    }
+    /** @test */
     function it_shows_a_default_message_if_users_list_is_empty()
     {
-        $this->get('/usuarios?empty')
+        $this->get('/usuarios')
             ->assertStatus(200)
             ->assertSee('No hay usuarios registrados');
     }

@@ -20,10 +20,13 @@ class ProfessionSeeder extends Seeder
         // ]);
 
         // Trabajando con un modelo de Laravel
+        
         Profession::create(['name' => 'Back-end developer']);
 
         Profession::create(['name' => 'Front-end developer']);
 
         Profession::create(['name' => 'Web developer']);
+
+        factory(Profession::class, 47)->create();
     }
 }
