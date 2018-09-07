@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\User;
 use App\Models\Profession;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\BD;
